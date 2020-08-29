@@ -1,0 +1,16 @@
+/*********************************************************/
+/********** Author 		: Mahmoud Korayem ****************/
+/********** Date        : 14 AUG 2020     ****************/
+/********** version     : V 01			  ****************/
+/********** Description : RCC-interface.h ****************/
+/*********************************************************/
+
+#ifndef   RCC_INTERFACE_H
+#define   RCC_INTERFACE_H
+
+#define	  RCC_AHP       0			 
+#define	  RCC_APB1      1		
+#define	  RCC_APB2      2
+		  
+
+#endif     
