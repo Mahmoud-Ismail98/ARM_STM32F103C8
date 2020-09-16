@@ -7,9 +7,9 @@
 
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
-#include "GPIO-interface.H"
-#include "GPIO-private.h"
-#include "GPIO-config.h"
+#include "GPIO_interface.h"
+#include "GPIO_private.h"
+#include "GPIO_config.h"
 
 void MGPIO_voidSetPinDirection(u8 Copy_u8Port,u8 Copy_u8Pin,u8 Copy_u8Mode)
 {
@@ -43,7 +43,7 @@ void MGPIO_voidSetPinDirection(u8 Copy_u8Port,u8 Copy_u8Pin,u8 Copy_u8Mode)
 					}
 					break;
 	
-		case GPIOA :
+		case GPIOC :
 					if(Copy_u8Pin <=7)
 					{
 						GPIOC_CRL &= ~((0b1111) << (Copy_u8Pin * 4));
@@ -62,7 +62,7 @@ void MGPIO_voidSetPinDirection(u8 Copy_u8Port,u8 Copy_u8Pin,u8 Copy_u8Mode)
 
 }
 
-void MGPIO_voidSetPinValue(u8 Copy_u8Port,U8 Copy_u8Pin,U8 Copy_u8Value)
+void MGPIO_voidSetPinValue(u8 Copy_u8Port,u8 Copy_u8Pin,u8 Copy_u8Value)
 {
 	switch(Copy_u8Port)
 	{
@@ -73,7 +73,7 @@ void MGPIO_voidSetPinValue(u8 Copy_u8Port,U8 Copy_u8Pin,U8 Copy_u8Value)
 					}						
 					else if(Copy_u8Value == GPIO_LOW)
 					{
-						CLEAR_BIT(GPIOA_ODR,Copy_u8Pin);
+						CLR_BIT(GPIOA_ODR,Copy_u8Pin);
 					}
 					break;
 					
@@ -84,7 +84,7 @@ void MGPIO_voidSetPinValue(u8 Copy_u8Port,U8 Copy_u8Pin,U8 Copy_u8Value)
 					}						
 					else if(Copy_u8Value == GPIO_LOW)
 					{
-						CLEAR_BIT(GPIOB_ODR,Copy_u8Pin);
+						CLR_BIT(GPIOB_ODR,Copy_u8Pin);
 					}
 					break;
 
@@ -95,32 +95,48 @@ void MGPIO_voidSetPinValue(u8 Copy_u8Port,U8 Copy_u8Pin,U8 Copy_u8Value)
 					}						
 					else if(Copy_u8Value == GPIO_LOW)
 					{
-						CLEAR_BIT(GPIOC_ODR,Copy_u8Pin);
+						CLR_BIT(GPIOC_ODR,Copy_u8Pin);
 					}						
 					break;
 
-		default		braek;			
+		//default		braek;
 	}
 	
 
 }
-u8   MPIO_u8GetPinValue(u8 Copy_u8Port,u8 Copy_u8Pin)
+u8   MGPIO_u8GetPinValue(u8 Copy_u8Port,u8 Copy_u8Pin)
 {
 	u8 LOC_u8Result = 0 ;
 
 	switch(Copy_u8Port)
 	{
-		case GPIOA	:	LOC_u8Result = GIT_BIT(GPIOA_IDR,Copy_u8Pin); 
-					 braek;
+		case GPIOA	:
+				LOC_u8Result = GET_BIT(GPIOA_IDR,Copy_u8Pin);
+				break;
 					 
-		case GPIOB	:	LOC_u8Result = GIT_BIT(GPIOB_IDR,Copy_u8Pin); 
-					 braek;
+		case GPIOB	:
+				LOC_u8Result = GET_BIT(GPIOB_IDR,Copy_u8Pin);
+		    	break;
 					 
-		case GPIOB	:	LOC_u8Result = GIT_BIT(GPIOB_IDR,Copy_u8Pin); 
-					 braek;
-					 
-		default		:braek; 			 		
+		case GPIOC	:
+				LOC_u8Result = GET_BIT(GPIOC_IDR,Copy_u8Pin);
+		    	break;
 	}
 
 	return LOC_u8Result ;
+}
+
+void MGPIO_voidTogglePinValue (u8 Copy_u8Port,u8 Copy_u8Pin){
+	switch (Copy_u8Port) {
+		case GPIOA :
+			TOG_BIT (GPIOA_ODR ,Copy_u8Pin ) ;
+			break ;
+		case GPIOB :
+			TOG_BIT(GPIOB_ODR ,Copy_u8Pin ) ;
+			break ;
+		case GPIOC : 
+			TOG_BIT(GPIOC_ODR , Copy_u8Pin) ;
+			break ;
+		default    : /* should not be here */ break ;
+	}
 }

@@ -16,7 +16,7 @@ void MNVIC_voidDisableInerupt   (u8 Copy_u8IntNumber);
 void MNVIC_voidSetPendingFlag   (u8 Copy_u8IntNumber);
 void MNVIC_voidClearPendingFlag (u8 Copy_u8IntNumber);
 u8   MNVIC_u8GetActiveFlag		(u8 Copy_u8IntNumber);
-void MNVIC_voidSetPeriority(s8 Copy_s8IntID , u8 Copy_u8tGroupPriority,u8 Copy_u8SubPriority,u32 Copy_u32Group);
+void MNVIC_voidSetPeriority(s8 Copy_s8IntID , u8 Copy_u8tGroupPriority,u8 Copy_u8SubPriority,u32 Copy_u32Group_Sub);
 
 #define    GROUP3			0x5FA0300 		// 4 Bits For Group  (IPR)=> Group
 #define    GROUP4			0x5FA0400		// 3 Bits For Group 1 Bit For Sub

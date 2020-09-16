@@ -8,8 +8,8 @@
 #ifndef  GPIO_INTERFACE_H
 #define  GPIO_INTERFACE_H
 
-#define     GPIO_HIFG  0
-#define     GPIO_LOW   1
+#define     GPIO_HIGH  1
+#define     GPIO_LOW   0
 
 #define     GPIOA      0 
 #define     GPIOB      1 
@@ -55,8 +55,9 @@
 
 
 void MGPIO_voidSetPinDirection(u8 Copy_u8Port,u8 Copy_u8Pin,u8 Copy_u8Mode);
-void MGPIO_voidSetPinValue(u8 Copy_u8Port,U8 Copy_u8Pin,U8 Copy_u8Value);
-u8   MPIO_u8GetPinValue(u8 Copy_u8Port,u8 Copy_u8Pin);
+void MGPIO_voidSetPinValue(u8 Copy_u8Port,u8 Copy_u8Pin,u8 Copy_u8Value);
+u8   MGPIO_u8GetPinValue(u8 Copy_u8Port,u8 Copy_u8Pin);
+void MGPIO_voidTogglePinValue (u8 Copy_u8Port,u8 Copy_u8Pin);
 
 
 
