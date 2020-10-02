@@ -17,6 +17,7 @@ void (*CallBack)(u8);
 
 void MSPI1_voidInit(void)
 {
+	/* CPOL=0 / CPHA=1 / Prescalar=CLK/2=4MHZ /SPI Enable /MSB first */
 	MSPI1->CR1 = 0x0347;
 }
 
