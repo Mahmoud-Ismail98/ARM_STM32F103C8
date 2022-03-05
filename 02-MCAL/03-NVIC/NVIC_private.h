@@ -1,7 +1,7 @@
 /*********************************************************/
 /********** Author 		: Mahmoud Korayem ****************/
-/********** Date        : 30 AUG 2020     ****************/
-/********** version     : V 01			  ****************/
+/********** Date        : 5 mar  2022     ****************/
+/********** version     : V 02			  ****************/
 /********** Description : NVIC-Private.h  ****************/
 /*********************************************************/
 
@@ -28,7 +28,13 @@
 #define NVIC_IABR0   *((volatile u32*)0xE000E300) 
 #define NVIC_IABR1   *((volatile u32*)0xE000E304) 
 
-#define NVIC_IPR     ((volatile u8 *)0xE000E100 + 0x300)
+#define NVIC_IPR     ((volatile u8*)0xE000E100 + 0x300)
+
+#define MNVIC_GROUP_4_SUB_0      0x05FA0300	// 4 Bits For Group  (IPR)=> Group
+#define MNVIC_GROUP_3_SUB_1      0x05FA0400	// 3 Bits For Group 1 Bit For Sub
+#define MNVIC_GROUP_2_SUB_2      0x05FA0500	// 2 Bits For Group 2 Bit For Sub
+#define MNVIC_GROUP_1_SUB_3      0x05FA0600	// 1 Bits For Group 3 Bit For Sub
+#define MNVIC_GROUP_0_SUB_4      0x05FA0700	// 0 Group 4 Bit For Sub
 
 /* SCB_base_Adress  0xE000ED00  */
 

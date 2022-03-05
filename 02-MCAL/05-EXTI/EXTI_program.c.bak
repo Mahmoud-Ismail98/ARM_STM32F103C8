@@ -48,7 +48,7 @@ void MEXTI_voidDisableEXTI (u8 Copy_u8EXTILine)
 }
 void MEXTI_voidSwTrigger(u8 Copy_u8EXTILine)
 {
-	SET_BIT(EXTI -> SWIER ,  Copy_u8EXTILine);
+	SET_BIT(EXTI -> PR ,  Copy_u8EXTILine);
 }
 void MEXTI_voidSetSignalLatch(u8 Copy_u8EXTILine , u8 Copy_u8EXTISenseMode)  //change mode in run time 
 {

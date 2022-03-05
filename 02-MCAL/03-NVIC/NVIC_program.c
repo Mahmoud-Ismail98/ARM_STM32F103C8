@@ -1,7 +1,7 @@
 /*********************************************************/
 /********** Author 		: Mahmoud Korayem ****************/
-/********** Date        : 30 AUG 2020     ****************/
-/********** version     : V 01			  ****************/
+/********** Date        : 5 mar  2022     ****************/
+/********** version     : V 02			  ****************/
 /********** Description : RCC-Program.c   ****************/
 /*********************************************************/
 
@@ -113,18 +113,26 @@ u8 MNVIC_u8GetActiveFlag(u8 Copy_u8IntNumber)
 		return Local_u8Result;	
 }
 
-void MNVIC_voidSetPeriority(s8 Copy_s8IntID , u8 Copy_u8tGroupPriority,u8 Copy_u8SubPriority,u32 Copy_u32Group_Sub)
-{							/*0x05FA0400 3 Group & 1 sub priority*/
-	u8 Local_u8Priority = Copy_u8SubPriority|(Copy_u8tGroupPriority<<((Copy_u32Group_Sub - 0x05FA0300)/256));
-	/* core peripheral 			*/
-	if(Copy_s8IntID < 0)
-	{
+void MNVIC_voidInitGroupSub(void)
+{
+	SCB_AIRCR = MNVIC_GROUP_SUB_DISTRIBUTION ;
+	
+}
 
-	}
+void MNVIC_voidSetPeriority(s8 Copy_s8PeripheralID , u8 Copy_u8tGroupPriority,u8 Copy_u8SubPriority)
+{							/*0x05FA0400 3 Group & 1 sub priority*/
+	u8 Local_u8Priority = Copy_u8SubPriority|(Copy_u8tGroupPriority<<((MNVIC_GROUP_SUB_DISTRIBUTION - 0x05FA0300)/256));
+	/* Copy_s8PeripheralID < 0 ----> core peripheral 			*/
+
 	/* external peripheral		*/ /*EXTI0 = 6*/
-	else if(Copy_s8IntID >= 0)
+	if(Copy_s8PeripheralID >= 0 , Copy_s8PeripheralID <60)
 	{
-		NVIC_IPR[Copy_s8IntID] = Local_u8Priority << 4 ;
+		NVIC_IPR[Copy_s8PeripheralID] = Local_u8Priority << 4 ;
 	}
-	SCB_AIRCR = Copy_u32Group_Sub ;
+
+	else
+	{
+		/* Report Error */
+	}	
+
 }
